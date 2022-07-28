@@ -12,11 +12,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Numpad Package',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Numpad Package'),
     );
   }
 }
@@ -37,18 +37,54 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Numpadd(
-              showActionButton: false,
-              hanTextController: testController,
-              textInputLenght: 10,
-              onSecodActionButtonPressed: (value) {
-                print(value);
-              },
-            ),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Numpadd(               
+                hanTextController: testController,
+                onSecodActionButtonPressed: (value) {
+                  print(value);
+                },
+              ),
+               Numpadd(
+                titleText: "Pay",
+                subTitleText: "",
+                buttonBackgroundColor: Colors.white,
+                elevation: 0,
+                hanTextController: testController,
+                textInputLenght: 10,
+                onSecodActionButtonPressed: (value) {
+                  print(value);
+                },
+              ),
+               Numpadd(
+                titleText: "",
+                backgroundColor: Colors.yellow,
+                subTitleText: "",
+                showActionButton: false,
+                buttonBackgroundColor: Colors.white,
+                elevation: 10,
+                hanTextController: testController,
+                textInputLenght: 10,
+                onSecodActionButtonPressed: (value) {
+                  print(value);
+                },
+              ),
+               Numpadd(
+                borderRaduis: 0,
+                titleText: "Pay",
+                subTitleText: "",
+                buttonBackgroundColor: Colors.white,
+                elevation: 0,
+                hanTextController: testController,
+                textInputLenght: 10,
+                onSecodActionButtonPressed: (value) {
+                  print(value);
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
