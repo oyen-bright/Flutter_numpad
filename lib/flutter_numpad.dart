@@ -10,19 +10,28 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class Numpadd extends StatefulWidget {
   final Color foregroundColor;
   final Color backgroundColor;
+  final Color buttonBackgroundColor;
   final Color buttonTextColor;
-  final TextEditingController hanTextController;
   final double buttonTextFontSize;
   final double borderRaduis;
   final double elevation;
-  final int textInputLenght;
+  final double actionButtonsElevation;
   final String titleText;
   final String subTitleText;
   final String secondActionButtonText;
-  final String actionButtonText;
+  final String actionButtonText;  
+  final int textInputLenght;
+  final TextEditingController hanTextController;
+  final bool showActionButton;
+  final Function(String) onSecodActionButtonPressed;
+  final Function()? actionButtonPressed;
+
+
+
+
   final Widget? titleActionwidget;
 
-  const  Numpadd({Key? key, this.elevation=5, this.textInputLenght=10, this.borderRaduis=20.0,   required  this.hanTextController,this.buttonTextColor=const Color(0XFF1817a9),   this.foregroundColor=const Color(0XFF1817a9) ,   this.backgroundColor = const Color(0xFFf8c21a), this.buttonTextFontSize=30, this.titleText = r"$",  this.subTitleText="Customer to Pay", this.actionButtonText="Clear", this.secondActionButtonText="Okay", this.titleActionwidget,    }) : super(key: key);
+  const  Numpadd({Key? key, this.elevation=5, this.textInputLenght=10, this.borderRaduis=20.0,   required  this.hanTextController,this.buttonTextColor=const Color(0XFF1817a9),   this.foregroundColor=const Color(0XFF1817a9) ,   this.backgroundColor = Colors.white, this.buttonTextFontSize=30, this.titleText = r"$",  this.subTitleText="Customer to Pay", this.actionButtonText="Clear", this.secondActionButtonText="Okay", this.titleActionwidget, required this.onSecodActionButtonPressed, this.actionButtonPressed, this.buttonBackgroundColor=const Color(0xFFf8c21a), this.actionButtonsElevation=0, this.showActionButton=true,    }) : super(key: key);
 
   @override
   State<Numpadd> createState() => _NumpaddState();
@@ -44,13 +53,14 @@ class _NumpaddState extends State<Numpadd> {
       builder: (BuildContext context, Widget? child) {  
         
       return  AlertDialog(
+        backgroundColor: widget.backgroundColor,
               elevation: widget.elevation,     
               shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(widget.borderRaduis))),
               titlePadding: EdgeInsets.zero,
               contentPadding: EdgeInsets.symmetric(horizontal: 5.w),
               title: Container(
-                width: double.infinity,
+                width: double.infinity,            
                 alignment: Alignment.centerRight,
                 child: widget.titleActionwidget ?? Container()
               ),
@@ -119,7 +129,7 @@ class _NumpaddState extends State<Numpadd> {
                                                 widget.foregroundColor),
                                         backgroundColor:
                                             MaterialStateProperty.all<Color>(
-                                                widget.backgroundColor),
+                                                widget.buttonBackgroundColor),
                                         overlayColor:
                                             MaterialStateProperty.all<Color>(
                                                 Colors.grey.shade100)),
@@ -145,7 +155,7 @@ class _NumpaddState extends State<Numpadd> {
                                                 widget.foregroundColor),
                                         backgroundColor:
                                             MaterialStateProperty.all<Color>(
-                                                widget.backgroundColor),
+                                                widget.buttonBackgroundColor),
                                         overlayColor:
                                             MaterialStateProperty.all<Color>(
                                                 Colors.grey.shade100)),
@@ -173,7 +183,7 @@ class _NumpaddState extends State<Numpadd> {
                                                 widget.foregroundColor),
                                         backgroundColor:
                                             MaterialStateProperty.all<Color>(
-                                                widget.backgroundColor),
+                                                widget.buttonBackgroundColor),
                                         overlayColor:
                                             MaterialStateProperty.all<Color>(
                                                 Colors.grey.shade100)),
@@ -205,7 +215,7 @@ class _NumpaddState extends State<Numpadd> {
                                                 widget.foregroundColor),
                                         backgroundColor:
                                             MaterialStateProperty.all<Color>(
-                                                widget.backgroundColor),
+                                                widget.buttonBackgroundColor),
                                         overlayColor:
                                             MaterialStateProperty.all<Color>(
                                                 Colors.grey.shade100)),
@@ -233,7 +243,7 @@ class _NumpaddState extends State<Numpadd> {
                                                 widget.foregroundColor),
                                         backgroundColor:
                                             MaterialStateProperty.all<Color>(
-                                                widget.backgroundColor),
+                                                widget.buttonBackgroundColor),
                                         overlayColor:
                                             MaterialStateProperty.all<Color>(
                                                 Colors.grey.shade100)),
@@ -261,7 +271,7 @@ class _NumpaddState extends State<Numpadd> {
                                                 widget.foregroundColor),
                                         backgroundColor:
                                             MaterialStateProperty.all<Color>(
-                                                widget.backgroundColor),
+                                                widget.buttonBackgroundColor),
                                         overlayColor:
                                             MaterialStateProperty.all<Color>(
                                                 Colors.grey.shade100)),
@@ -293,7 +303,7 @@ class _NumpaddState extends State<Numpadd> {
                                                  widget.foregroundColor),
                                         backgroundColor:
                                             MaterialStateProperty.all<Color>(
-                                                widget.backgroundColor),
+                                                widget.buttonBackgroundColor),
                                         overlayColor:
                                             MaterialStateProperty.all<Color>(
                                                 Colors.grey.shade100)),
@@ -321,7 +331,7 @@ class _NumpaddState extends State<Numpadd> {
                                                  widget.foregroundColor),
                                         backgroundColor:
                                             MaterialStateProperty.all<Color>(
-                                                widget.backgroundColor),
+                                                widget.buttonBackgroundColor),
                                         overlayColor:
                                             MaterialStateProperty.all<Color>(
                                                 Colors.grey.shade100)),
@@ -349,7 +359,7 @@ class _NumpaddState extends State<Numpadd> {
                                                  widget.foregroundColor),
                                         backgroundColor:
                                             MaterialStateProperty.all<Color>(
-                                                widget.backgroundColor),
+                                                widget.buttonBackgroundColor),
                                         overlayColor:
                                             MaterialStateProperty.all<Color>(
                                                 Colors.grey.shade100)),
@@ -375,6 +385,7 @@ class _NumpaddState extends State<Numpadd> {
                                   );
                                 },
                                 style: ButtonStyle(
+                                  
                                     alignment: Alignment.center,
                                     shape:
                                         MaterialStateProperty.all<OutlinedBorder>(
@@ -386,14 +397,15 @@ class _NumpaddState extends State<Numpadd> {
                                             widget.foregroundColor),
                                     backgroundColor:
                                         MaterialStateProperty.all<Color>(
-                                            widget.backgroundColor),
+                                            widget.buttonBackgroundColor),
                                     overlayColor:
                                         MaterialStateProperty.all<Color>(
                                             Colors.grey.shade100)),
                                 child: Text('.',
                                     style: TextStyle(
-                                      fontWeight: FontWeight.normal,
-                                      fontSize: widget.buttonTextFontSize,
+                                      
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: widget.buttonTextFontSize+5,
                                       color: widget.buttonTextColor,
                                     )),
                               ),
@@ -415,7 +427,7 @@ class _NumpaddState extends State<Numpadd> {
                                             widget.foregroundColor),
                                     backgroundColor:
                                         MaterialStateProperty.all<Color>(
-                                            widget.backgroundColor),
+                                            widget.buttonBackgroundColor),
                                     overlayColor:
                                         MaterialStateProperty.all<Color>(
                                             Colors.grey.shade100)),
@@ -445,7 +457,7 @@ class _NumpaddState extends State<Numpadd> {
                                             widget.foregroundColor),
                                     backgroundColor:
                                         MaterialStateProperty.all<Color>(
-                                            widget.backgroundColor),
+                                            widget.buttonBackgroundColor),
                                     overlayColor:
                                         MaterialStateProperty.all<Color>(
                                             Colors.grey.shade100)),
@@ -512,9 +524,9 @@ class _NumpaddState extends State<Numpadd> {
                       Container(
                         child: Row(
                           children: [
-                            Expanded(
+                           widget.showActionButton ? Expanded(
                               child: ElevatedButton(
-                                onPressed: () {
+                                onPressed:widget.actionButtonPressed ?? () {
                                   widget.hanTextController.clear();
                                   setState(() {
                                     
@@ -522,13 +534,14 @@ class _NumpaddState extends State<Numpadd> {
                                 },
                                 child: Text(
                                   widget.actionButtonText,
-                                  style: TextStyle(fontSize: 13.sp),
+                                  style: TextStyle(fontSize: 15.sp),
                                 ),
                                 style: ButtonStyle(
                                     fixedSize: MaterialStateProperty.all<Size>(
-                                        Size.fromHeight(49.h)),
-                                    // padding: MaterialStateProperty.all<EdgeInsets>(
-                                    //     EdgeInsets.all(15.r)),
+                                        Size.fromHeight(50.h)),
+                                     elevation: MaterialStateProperty.all<double>(
+                                      widget.actionButtonsElevation
+                                    ),
                                     backgroundColor:
                                         MaterialStateProperty.all<Color>(
                                             Colors.red),
@@ -538,26 +551,28 @@ class _NumpaddState extends State<Numpadd> {
                                             borderRadius: BorderRadius.all(
                                               Radius.circular(10.r),
                                             ),
-                                            side:
-                                               const BorderSide(color: Colors.red)))),
+                                            side:const BorderSide(
+                                                color:Colors.transparent)))),
                               ),
-                            ),
-                            SizedBox(
+                            ) : Container(),
+                           widget.showActionButton ?  SizedBox(
                               width: 20.w,
-                            ),
+                            ) : Container(),
                             Expanded(
                               child: ElevatedButton(
-                                onPressed: (){},
+                                onPressed:   () => widget.onSecodActionButtonPressed(widget.hanTextController.text),
                                 
                                 child: Text(
                                   widget.secondActionButtonText,
-                                  style: TextStyle(fontSize: 13.sp),
+                                  style: TextStyle(fontSize: 15.sp),
                                 ),
                                 style: ButtonStyle(
                                     fixedSize: MaterialStateProperty.all<Size>(
-                                        Size.fromHeight(49.h)),
-                                    // padding: MaterialStateProperty.all<EdgeInsets>(
-                                    //     EdgeInsets.all(15.r)),
+                                        Size.fromHeight(50.h)),
+                                    
+                                    elevation: MaterialStateProperty.all<double>(
+                                      widget.actionButtonsElevation
+                                    ),
                                     backgroundColor:
                                         MaterialStateProperty.all<Color>(
                                             widget.foregroundColor),
@@ -568,7 +583,7 @@ class _NumpaddState extends State<Numpadd> {
                                               Radius.circular(10.r),
                                             ),
                                             side:const BorderSide(
-                                                color: Colors.blueAccent)))),
+                                                color:Colors.transparent)))),
                               ),
                             ),
                           ],
@@ -578,7 +593,7 @@ class _NumpaddState extends State<Numpadd> {
                         padding: EdgeInsets.symmetric(horizontal: 20.w),
                         margin: EdgeInsets.only(bottom: 30.h),
                         decoration: BoxDecoration(
-                            color: Colors.white,
+                        color: widget.backgroundColor,
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10.r),
                               topRight: Radius.circular(10.r),
