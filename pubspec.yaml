@@ -2,7 +2,6 @@ name: flutter_numpad
 description: A new Flutter package for a numpad layout on screen.
 version: 0.0.1
 homepage: https://github.com/oyen-bright/flutter_numpad
-author: Oyeniyi Bright  
 
 environment:
   sdk: ">=2.15.1 <3.0.0"
